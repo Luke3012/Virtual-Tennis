@@ -1,86 +1,41 @@
-# 🎾 **VirtualTennis+**
+# Virtual Tennis+
 
-> *A physics-driven tennis simulation built in Unity — real scoring, real rallies, and smart AI opponents.*  
+Virtual Tennis+ is a single-player VR tennis game developed in Unity, designed to deliver an immersive and interactive sports experience.  
+Its standout feature is seamless integration with a **Companion App**, allowing players to control shots and gameplay dynamics through their smartphone sensors.
 
-## 🧠 Overview
+## 🎮 Gameplay
+The game offers two main modes:
+- **Arcade Mode** – Choose the opponent's difficulty (Easy, Medium, Hard) and play quick matches.
+- **Tournament Mode** – Face opponents of increasing difficulty, earning trophies with each win. A single defeat returns you to the main menu.
 
-**VirtualTennis+** is a real-time tennis simulator built using **Unity** and **C#**. It models authentic scoring, ball–racket physics, and adaptive AI through modular and testable systems.
+The player can:
+- Control the racket via **keyboard** or **Companion App**.
+- Perform strong or weak shots depending on gesture speed.
+- Switch between first-person and third-person views.
+- Pause and navigate menus directly from the app or keyboard.
 
----
+## 🛠 Technical Overview
+- **Architecture**: Client–server model, with the game acting as the server and the Companion App as the client.
+- **Networking**:  
+  - UDP broadcast (port 5001) for discovery.  
+  - TCP/IP connection for continuous communication and automatic reconnection.
+- **Core Components**:
+  - `CaricaPersonaggio` – Dynamically loads chosen player/AI prefabs.
+  - `CaricaScena` – Handles asynchronous scene loading with camera animations.
+  - `Musica` (singleton) – Manages background music across scenes.
+  - `RacchettaManager` (singleton) – Manages app connection and command processing.
+  - `GestionePunteggio` – Controls scoring logic, game states, and camera events.
+  - `Giocatore` / `Bot` – Player and AI logic, each inheriting from `GiocatoreBase`.
+  - `Palla` – Governs ball movement, collisions, and point assignment.
 
-## 🧱 Core Systems
+## 🎯 AI Difficulty Levels
+Implemented via the `IDifficolta` interface:
+- **Easy**: Slow speed, high error rates.
+- **Medium**: Balanced stats.
+- **Hard**: High speed, low error probability.
 
-- **🧮 Scoring Engine:**  
-  Implements full tennis rules — _points_, _games_, _sets_, _tie-breakers_ — via a deterministic state machine.
-
-- **🎾 Physics Mechanics:**  
-  Rigidbody-driven ball flight, **spin**, **surface bounce**, and realistic collisions.
-
-- **🤖 AI Opponents:**  
-  Uses finite state machines (FSMs) for _movement_, _shot selection_, and _risk-aware decision making_.
-
-- **🕹️ Input & Cameras:**  
-  Unity Input System with cinematic cameras: _broadcast_, _tracking_, _top-down_.
-
-- **🧩 UI/UX:**  
-  uGUI or UI Toolkit for scoreboard, serve indicators, match progression.
-
----
-
-## 🧱 Architecture
-
-| Component          | Description |
-|-------------------|-------------|
-| `MatchManager`     | Oversees match flow and state transitions |
-| `BallController`   | Handles physics, spin, and collision |
-| `AIController`     | Controls behavior logic for non-player opponents |
-| `ScoreSystem`      | Tracks scoring and event triggers |
-| `PlayerController` | Inputs and positioning |
-
-- **📄 Data Driven:**  
-  `ScriptableObjects` define players, courts, rackets.  
-  `JSON` stores match logs and presets.
-
-- **🔔 Events:**  
-  C# Events or `UnityEvents` push updates across systems.
+## 📷 Camera System
+The `CameraController` supports smooth transitions between perspectives using linear (`lerp`) and spherical (`slerp`) interpolation.
 
 ---
 
-## 📦 Platforms
-
-- Desktop: 🖥️ Windows
-- Compoanion App: 🤖 Android
-
----
-
-## 📈 Performance
-
-- Physics runs in `FixedUpdate`  
-- UI & Animations run in `Update` / `LateUpdate`  
-- Object pooling for trails and particles  
-- Minimal GC overhead via `struct` reuse
-
----
-
-## 🧪 Testing
-
-- ✅ PlayMode: serve/rally logic  
-- 🔍 EditMode: state transitions and win conditions  
-- 🎯 Deterministic seeds for repeatable AI & rallies
-
----
-
-## ⚠️ Limitations
-
-- Basic aerodynamics  
-- No IK animation or full crowd simulation  
-- Simplified line call system
-
----
-
-## 🚀 Future Work
-
-- Multiplayer (LAN/Online)  
-- Injury/stamina system  
-- Match replays with scrubbing  
-- Doubles mode + bracket view
