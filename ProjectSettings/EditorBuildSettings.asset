@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuPrincipale.unity
+    guid: 16b92119b56207743a901f9dadf7fe26
+  - enabled: 1
+    path: Assets/Scenes/SceltaGiocatore.unity
+    guid: 8815bbeda81bccb42971936b6c9e63bc
+  - enabled: 1
+    path: Assets/Scenes/SceltaAvversario.unity
+    guid: 2278ec801a8a3f44cafba089f833a8c2
+  - enabled: 1
+    path: Assets/Scenes/TennisScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  m_configObjects: {}
