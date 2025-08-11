@@ -48,8 +48,8 @@
 
 ## 📦 Platforms
 
-- Desktop: 🖥️ Windows / macOS  
-- Future-ready: mobile, console — swap input profiles
+- Desktop: 🖥️ Windows
+- Compoanion App: 🤖 Android
 
 ---
 
