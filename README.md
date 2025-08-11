@@ -1,43 +1,86 @@
-VirtualTennis+ is a real-time tennis simulator built in Unity. It combines a robust scoring state machine with precise ball–racket physics and opponent AI, delivering realistic rallies and match flow.
+# 🎾 **VirtualTennis+**
 
-The codebase emphasizes clean separation of concerns, event-driven updates, and testability.
-• 	Core systems
-• 	Scoring engine: Full tennis logic (points, games, sets, tie-break) via a deterministic state machine.
-• 	Physics: Rigidbody-based ball flight, spin, bounce coefficients by surface, timed racket collisions.
-• 	AI opponents: Finite state machines for serve/return/positioning, shot selection by risk profile.
-• 	Input & camera: Unity Input System (player), broadcast and follow cams with smooth transitions.
-• 	UI/UX: uGUI or UI Toolkit for scoreboard, serve indicators, and match timeline.
-• 	Architecture
-• 	Managers: MatchManager, ScoreSystem, BallController, PlayerController, AIController.
-• 	Data: ScriptableObjects for player archetypes, courts, rackets; JSON for match logs and settings.
-• 	Events: C# events/UnityEvents for score updates, rally outcomes, and UI sync.
-• 	Platforms
-• 	Desktop builds (Windows/macOS); adaptable to console or mobile with input profile swaps.
+> *A physics-driven tennis simulation built in Unity — real scoring, real rallies, and smart AI opponents.*  
 
-Ideal for coursework, demonstrations, and experimenting with AI/physics trade-offs.
+## 🧠 Overview
 
-Project report
-• 	Objectives
-• 	Deliver a credible tennis feel with readable code.
-• 	Separate gameplay, presentation, and data for maintainability.
-• 	Design overview
-• 	A Scoring State Machine advances from point → game → set, including tie-break conditions.
-• 	Ball Physics uses Rigidbody, lift/drag approximations for topspin/slice, and PhysicMaterials per surface.
-• 	AI FSM cycles through anticipate → move → prepare → swing → recover, weighted by player style.
-• 	Key systems
-• 	Serve pipeline: Toss timing → contact window → fault/let checks → advantage tracking.
-• 	Rally resolution: Contact point + swing vector → impulse + spin → trajectory integration → bounce response → forced error/winner evaluation.
-• 	Shot selection: Risk model blends opponent position, ball height, and stamina into aim zones.
-• 	UI and telemetry
-• 	Live scoreboard, mini-map positions, and a rally feed.
-• 	Point-by-point JSON export for post-match analysis or Companion ingestion.
-• 	Performance
-• 	Physics in FixedUpdate; animation and UI in Update/LateUpdate.
-• 	Object reuse for particles/trails; minimal GC via pooled structs.
-• 	Testing
-• 	PlayMode tests for scoring edge cases; EditMode tests for state transitions.
-• 	Deterministic seeds for AI/serve placement during tests.
-• 	Limitations
-• 	Simplified aerodynamics; no full-body IK; crowds and line calls are stubbed.
-• 	Future work
-• 	Online matchmaking, deeper stamina/injury model, doubles mode, replay system with scrubbing.
+**VirtualTennis+** is a real-time tennis simulator built using **Unity** and **C#**. It models authentic scoring, ball–racket physics, and adaptive AI through modular and testable systems.
+
+---
+
+## 🧱 Core Systems
+
+- **🧮 Scoring Engine:**  
+  Implements full tennis rules — _points_, _games_, _sets_, _tie-breakers_ — via a deterministic state machine.
+
+- **🎾 Physics Mechanics:**  
+  Rigidbody-driven ball flight, **spin**, **surface bounce**, and realistic collisions.
+
+- **🤖 AI Opponents:**  
+  Uses finite state machines (FSMs) for _movement_, _shot selection_, and _risk-aware decision making_.
+
+- **🕹️ Input & Cameras:**  
+  Unity Input System with cinematic cameras: _broadcast_, _tracking_, _top-down_.
+
+- **🧩 UI/UX:**  
+  uGUI or UI Toolkit for scoreboard, serve indicators, match progression.
+
+---
+
+## 🧱 Architecture
+
+| Component          | Description |
+|-------------------|-------------|
+| `MatchManager`     | Oversees match flow and state transitions |
+| `BallController`   | Handles physics, spin, and collision |
+| `AIController`     | Controls behavior logic for non-player opponents |
+| `ScoreSystem`      | Tracks scoring and event triggers |
+| `PlayerController` | Inputs and positioning |
+
+- **📄 Data Driven:**  
+  `ScriptableObjects` define players, courts, rackets.  
+  `JSON` stores match logs and presets.
+
+- **🔔 Events:**  
+  C# Events or `UnityEvents` push updates across systems.
+
+---
+
+## 📦 Platforms
+
+- Desktop: 🖥️ Windows / macOS  
+- Future-ready: mobile, console — swap input profiles
+
+---
+
+## 📈 Performance
+
+- Physics runs in `FixedUpdate`  
+- UI & Animations run in `Update` / `LateUpdate`  
+- Object pooling for trails and particles  
+- Minimal GC overhead via `struct` reuse
+
+---
+
+## 🧪 Testing
+
+- ✅ PlayMode: serve/rally logic  
+- 🔍 EditMode: state transitions and win conditions  
+- 🎯 Deterministic seeds for repeatable AI & rallies
+
+---
+
+## ⚠️ Limitations
+
+- Basic aerodynamics  
+- No IK animation or full crowd simulation  
+- Simplified line call system
+
+---
+
+## 🚀 Future Work
+
+- Multiplayer (LAN/Online)  
+- Injury/stamina system  
+- Match replays with scrubbing  
+- Doubles mode + bracket view
